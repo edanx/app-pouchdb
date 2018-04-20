@@ -42,6 +42,9 @@ const styles = theme => ({
     margin: theme.spacing.unit,
     minWidth: 240,
   },
+   tableWrapper: {
+    overflowX: 'auto',
+  },
   formContent: theme.mixins.gutters({
     paddingTop: 16,
      paddingBottom: 16,
@@ -163,7 +166,7 @@ class PouchDbApp extends React.Component {
             label={auth ? 'Logout' : 'Login'}
           />
         </FormGroup> */}
-        <AppBar position="static">
+        <AppBar position="sticky">
           <Toolbar>
             <IconButton className={classes.menuButton} color="inherit" aria-label="Menu">
               <MenuIcon />
@@ -233,6 +236,7 @@ class PouchDbApp extends React.Component {
         <Typography component="p">
           List of all markers inserted
         </Typography>
+		<div className={classes.tableWrapper} >
         <Table  className={classes.table}>
         <TableHead >
           <TableRow >
@@ -243,6 +247,7 @@ class PouchDbApp extends React.Component {
           </TableRow>
         </TableHead>
         <TableBody >
+		
           {this.state.data.map(n => {
             return (
               <TableRow  key={n._id}>
@@ -259,6 +264,7 @@ class PouchDbApp extends React.Component {
           })}
         </TableBody>
       </Table>
+	  </div>
       <Snackbar
           anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
           open={this.state.showNotification}
